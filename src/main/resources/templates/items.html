@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Items Page</title>
+</head>
+<body>
+
+Users:
+<!--<ul th:if="${users!=null}">-->
+
+<!--    <li th:each="user : ${users}" th:text="${user.name}"></li>-->
+
+<!--</ul>-->
+
+
+<a href="/">Նախորդ էջ</a>
+
+    <div>
+<!--        th:href="@{/'items' + ${item.id}}-->
+        <a th:each="item: ${items}">
+            <div style="width: 160px;float: left">
+                <div>
+                    <img th:if="${item.picUrl != null}" th:src="@{/getImage(picName=${item.getPicUrl()})}" width="150px">
+                    <img th:if="${item.picUrl == null}" src="/pic/image-not-found.jpg" width="150px">
+                </div>
+                <div>
+                    <span th:text="${item.getTitle()}"></span> <span th:text="${item.price}"></span>
+                </div>
+                User Info:
+                <div>
+                    <span th:text="${item.user.name + ' ' + item.user.surname}"></span> <span th:text="${item.user.phone}"></span>
+                </div>
+                Category:
+                <div>
+                    <span th:text="${item.category.name}"></span>
+                </div>
+            </div>
+        </a>
+
+    </div>
+</div>
+<a href="/items/add">Add Item</a>
+
+
+</body>
+</html>

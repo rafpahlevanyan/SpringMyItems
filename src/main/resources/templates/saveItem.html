@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+</head>
+<body>
+
+Save Item
+<form action="/items/add" method="post" enctype="multipart/form-data">
+
+    
+    <input th:if="${item != null}" type="hidden" th:value="${item.id}" name="id">
+    title:<input type="text" name="title" th:value="${item == null} ? '' : ${item.title} " placeholder="title"/><br>
+    price:<input type="text" name="price" th:value="${item== null} ? '' : ${item.price} " placeholder="price"/><br>
+    Picture:<input type="file" name="picture"><br>
+    Users:
+    <select name="user.id">
+        <option th:each="user : ${users}" th:text="${user.name}" th:value="${user.id}"></option>
+    </select><br>
+    Category
+    <select name="category.id">
+        <option th:each="cat : ${categories}" th:text="${cat.name}" th:value="${cat.id}"></option><br>
+    </select>
+
+    <input type="submit" value="Add"><br>
+
+
+</form>
+
+</body>
+</html>
